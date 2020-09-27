@@ -18,9 +18,8 @@ class SceneFile(object):
 
     @property
     def filename(self):
-        pattern = "{folder_path}{descriptor}_{task}_v{ver:03d}{ext}"
-        return pattern.format(folder_path=self.folder_path,
-                              descriptor=self.descriptor,
+        pattern = "{descriptor}_{task}_v{ver:03d}{ext}"
+        return pattern.format(descriptor=self.descriptor,
                               task=self.task,
                               ver=self.ver,
                               ext=self.ext)
@@ -40,11 +39,11 @@ class SceneFile(object):
         """Saves the scene file.
 
         Returns:
-        Path: The path to the scene file if successful
+            Path: The path to the scene file if successful
         """
         try:
             return pmc.system.saveAs(self.path)
         except RuntimeError as err:
-            log.warning("Missing directories in path. Creating folders...")
+            log.warning("Missing directories in path. Creating folder...")
             self.folder_path.makedirs_p()
             return pmc.system.saveAs(self.path)

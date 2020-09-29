@@ -77,7 +77,7 @@ class SceneFile(object):
         version number available in the folder.
 
         Returns:
-            Path: The path to teh scene file if successful
+            Path: The path to the scene file if successful
         """
         self.ver = self.next_avail_ver()
         self.save()
